@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# API Key config — NEVER push this to GitHub
+js/config.js
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo

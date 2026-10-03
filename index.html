@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Pipeline | Multi-Agent Dashboard</title>
+    <meta name="description" content="Multi-agent AI content generation pipeline — Research, Blog, Social Media & SEO powered by Gemini AI">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Animated background orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Top progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <div>
+                    <h1>AI Content Pipeline</h1>
+                    <p class="tagline">Multi-Agent Content Generation System</p>
+                </div>
+            </div>
+            <div class="header-badges">
+                <span class="badge">Generative AI</span>
+                <span class="badge">Multi-Agent</span>
+                <span class="badge">AI Workflows</span>
+                <span class="badge">Automation</span>
+            </div>
+        </header>
+
+        <!-- ===== CONFIG SECTION ===== -->
+        <section class="config-section glass-card">
+            <div class="config-row topic-row">
+                <div class="input-group grow">
+                    <label for="topicInput">💡 Enter Your Topic</label>
+                    <input type="text" id="topicInput" placeholder="e.g., The Future of AI in Healthcare, Sustainable Energy Trends...">
+                </div>
+                <button class="generate-btn" id="generateBtn" disabled>
+                    <span class="btn-text">Generate Content</span>
+                    <span class="btn-loader"></span>
+                    <span class="btn-icon">🚀</span>
+                </button>
+            </div>
+            <p class="hint" id="statusHint">Enter a topic to generate content. 🚀</p>
+        </section>
+
+        <!-- ===== PIPELINE VISUALIZATION ===== -->
+        <section class="pipeline-section">
+            <h2 class="section-title">
+                <span class="title-icon">🔗</span> Agent Pipeline
+            </h2>
+            <div class="pipeline">
+                <!-- Agent 1 -->
+                <div class="agent-card glass-card" id="agent-research" data-status="idle">
+                    <div class="status-ring"></div>
+                    <div class="agent-number">01</div>
+                    <div class="agent-icon">🔍</div>
+                    <h3>Research Agent</h3>
+                    <p>Analyzes topic &amp; gathers key insights, trends, and data points</p>
+                    <div class="agent-status-label">Idle</div>
+                    <div class="agent-timer" id="timer-research"></div>
+                </div>
+
+                <div class="pipeline-connector">
+                    <div class="connector-track"><div class="connector-fill"></div></div>
+                    <span class="connector-arrow">›</span>
+                </div>
+
+                <!-- Agent 2 -->
+                <div class="agent-card glass-card" id="agent-blog" data-status="idle">
+                    <div class="status-ring"></div>
+                    <div class="agent-number">02</div>
+                    <div class="agent-icon">✍️</div>
+                    <h3>Blog Writer</h3>
+                    <p>Crafts engaging, structured blog content from research</p>
+                    <div class="agent-status-label">Idle</div>
+                    <div class="agent-timer" id="timer-blog"></div>
+                </div>
+
+                <div class="pipeline-connector">
+                    <div class="connector-track"><div class="connector-fill"></div></div>
+                    <span class="connector-arrow">›</span>
+                </div>
+
+                <!-- Agent 3 -->
+                <div class="agent-card glass-card" id="agent-social" data-status="idle">
+                    <div class="status-ring"></div>
+                    <div class="agent-number">03</div>
+                    <div class="agent-icon">📱</div>
+                    <h3>Social Media</h3>
+                    <p>Creates Twitter, LinkedIn &amp; Instagram posts</p>
+                    <div class="agent-status-label">Idle</div>
+                    <div class="agent-timer" id="timer-social"></div>
+                </div>
+
+                <div class="pipeline-connector">
+                    <div class="connector-track"><div class="connector-fill"></div></div>
+                    <span class="connector-arrow">›</span>
+                </div>
+
+                <!-- Agent 4 -->
+                <div class="agent-card glass-card" id="agent-seo" data-status="idle">
+                    <div class="status-ring"></div>
+                    <div class="agent-number">04</div>
+                    <div class="agent-icon">📊</div>
+                    <h3>SEO Optimizer</h3>
+                    <p>Generates meta tags, keywords &amp; readability analysis</p>
+                    <div class="agent-status-label">Idle</div>
+                    <div class="agent-timer" id="timer-seo"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== OUTPUT SECTION ===== -->
+        <section class="output-section glass-card" id="outputSection">
+            <div class="output-header">
+                <h2 class="section-title"><span class="title-icon">📦</span> Generated Content</h2>
+                <div class="output-actions">
+                    <button class="action-btn" id="copyAllBtn" title="Copy all content">
+                        <span>📋</span> Copy All
+                    </button>
+                    <button class="action-btn" id="downloadBtn" title="Download as text file">
+                        <span>⬇️</span> Download
+                    </button>
+                    <button class="action-btn accent" id="resetBtn" title="Start over">
+                        <span>🔄</span> New Topic
+                    </button>
+                </div>
+            </div>
+
+            <div class="tabs" id="tabsNav">
+                <button class="tab active" data-tab="research">🔍 Research</button>
+                <button class="tab" data-tab="blog">✍️ Blog Post</button>
+                <button class="tab" data-tab="social">📱 Social Media</button>
+                <button class="tab" data-tab="seo">📊 SEO Analysis</button>
+                <div class="tab-indicator" id="tabIndicator"></div>
+            </div>
+
+            <div class="tab-panels">
+                <div class="tab-panel active" id="panel-research">
+                    <div class="output-content" id="output-research">
+                        <div class="placeholder-msg">Research output will appear here...</div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="panel-blog">
+                    <div class="output-content" id="output-blog">
+                        <div class="placeholder-msg">Blog post will appear here...</div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="panel-social">
+                    <div class="output-content" id="output-social">
+                        <div class="placeholder-msg">Social media posts will appear here...</div>
+                    </div>
+                </div>
+                <div class="tab-panel" id="panel-seo">
+                    <div class="output-content" id="output-seo">
+                        <div class="placeholder-msg">SEO analysis will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <p>Built with ⚡ Gemini AI &mdash; Multi-Agent Content Pipeline System</p>
+            <p class="footer-sub">Hackathon 2026 &bull; Generative AI &bull; Agentic Workflows &bull; Business Automation</p>
+        </footer>
+
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/gemini.js"></script>
+    <script src="js/agents.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
