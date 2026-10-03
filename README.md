@@ -50,15 +50,7 @@ ai-content-pipeline/
 └── README.md           → This file
 ```
 
-## 🌐 Deployment
 
-This is a static site — just upload the folder to any hosting:
-
-- **Netlify**: Drag & drop the folder
-- **Vercel**: Import from GitHub
-- **GitHub Pages**: Push to repo → enable Pages
-
-No build step needed! No npm, no Node.js, no server.
 
 ---
 
